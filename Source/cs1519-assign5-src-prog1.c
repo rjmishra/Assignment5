@@ -45,7 +45,6 @@ Node* addAtBeginning(int element, Node *header){
 	Node *newNode;
 
 	if(header==NULL){
-		printf("\nHeader seems to be null!");
 		header=init(element);
 		return header;
 	}
@@ -69,8 +68,8 @@ void addAtEnd(int element, Node *header){
 
 	temp->next=newNode;
 	
-
 }
+
 
 void addAtPosition(int position, int element, Node *header){
 	Node *newNode, *temp;
@@ -91,17 +90,34 @@ void addAtPosition(int position, int element, Node *header){
 
 
 Node* deleteFromBeginning(Node *header){
+	
 	Node *temp;
 	temp=header;
+
+	if(header==NULL){
+		printf("\nList is empty, no elements to delete.");
+		return NULL;
+	} 
 	header=header->next;
 	temp->next=NULL;
 	free(temp);
 	return header;
 }
 
-void deleteFromEnd(Node *header){
+
+
+Node* deleteFromEnd(Node *header){
 	Node *temp, *parent;
+	if(header==NULL){
+		printf("\nList is empty, no elements to delete.");
+		return NULL;
+	} 	
 	parent=temp=header;
+	
+	if(temp->next==NULL){
+		free(temp);
+		return NULL;
+	}
 	
 	while(temp->next!=NULL){
 		parent=temp;		
@@ -110,13 +126,27 @@ void deleteFromEnd(Node *header){
 
 	parent->next=NULL;
 	free(temp);
+	
+	return header;
 
 }
 
-void deleteFromPosition(int position, Node* header){
+
+
+Node* deleteFromPosition(int position, Node* header){
 	Node *temp, *parent;
 	int i=1;
+	if(header==NULL){
+		printf("\nList is empty, no elements to delete");
+		return NULL;
+	} 
 	parent=temp=header;
+	
+	if(position==1){
+		header=header->next;
+		free(temp);
+		return header;
+	}
 	
 	while(i<position){
 		parent=temp;		
@@ -125,10 +155,11 @@ void deleteFromPosition(int position, Node* header){
 	}
 	if(temp==NULL){
 		printf("\nPlease check, this is not correct position in the list");
-		return;
+		return	header;
 	}
 	parent->next=temp->next;
 	free(temp);
+	return header;
 	
 
 }	
@@ -138,7 +169,7 @@ void displayList(Node *header){
 	Node *temp;
 	temp=header;
 	if(temp==NULL){
-		printf("\nList is empty");
+		printf("\nThe list is empty, no elements to display.");
 		return;
 	}
 	
@@ -147,7 +178,7 @@ void displayList(Node *header){
 		printf("%d	", temp->element);
 		temp=temp->next;
 	}
-	printf("\n");
+	printf("\n\n");
 }
 
 
@@ -183,19 +214,24 @@ int main(){
 	
 		switch(ch){
 			case 1:
-				printf("\nPlease enter the element for the node");
+				printf("\nPlease enter the element for the new node:");
 				scanf("%d", &element);
 				header=addAtBeginning(element, header);
 				break;
 			case 2:
-				printf("\nPlease enter the element for the node");
+				printf("\nPlease enter the element for the new node:");
 				scanf("%d", &element);
 				addAtEnd(element, header);
 				break;
 			case 3:
-				printf("\nPlease enter the position for the new node");
+				printf("\nPlease enter the position for the new node:");
 				scanf("%d", &position);
-				printf("\nPlease enter the element for the node");
+				if(position<=0){
+					printf("\nPosition must be greater than 1");
+					printf("\nPlease enter the position again:");
+					scanf("%d", &position);
+				}
+				printf("\nPlease enter the element for the new node:");
 				scanf("%d", &element);
 				addAtPosition(position, element, header);
 				break;
@@ -203,13 +239,18 @@ int main(){
 				header=deleteFromBeginning(header);
 				break;
 			case 5:
-				deleteFromEnd(header);
+				header=deleteFromEnd(header);
 				break;
 	
 			case 6:
 				printf("\nPlease enter the position for the deletion");
 				scanf("%d", &position);
-				deleteFromPosition(position, header);
+				if(position<=0){
+					printf("\nPosition must be greater than 1");
+					printf("\nPlease enter the position again:");
+					scanf("%d", &position);
+				}
+				header=deleteFromPosition(position, header);
 				break;
 			
 			case 7:
@@ -222,9 +263,3 @@ int main(){
 
 	return 0;
 }
-
-
-
-	
-	
-
