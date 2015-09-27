@@ -167,7 +167,6 @@ void displayList(Node *header){
 		return;
 	}
 	
-	printf("\nDisplaying the elements of the list: \n");
 	while(temp!=NULL){
 		printf("%d	", temp->element);
 		temp=temp->next;
@@ -177,47 +176,58 @@ void displayList(Node *header){
 
 
 
-/*void move(Node *header){
-	Node *current, *previous;
+int moveBackandForth(Node *header){
+	Node *left, *right;
 	Node *temp;
+	float random;
 	int choice;
+	left=right=header;	
 	do{
-		printf("\n\n1: To move forward\n2: To move backward\n 3: Print forward\n4: Print Backward\n5:Print in Both direction"); 
-		printf("\nPlease enter your choice(-1 to return to main menu):");	
-		scanf("%d", &choice);
-		
+		printf("\n1:Random Walk \n2:Print the list"); 
+		printf("\nPlease enter your choice(-1 to exit):");	
+		scanf("%d", &choice);	
 		switch(choice){
-		
-			case 1:
-				if(current==header&&header->next!=NULL){
-					current=header->next;
-					previous=header;
-					previous->next=NULL;
-				}
-				else if(header->next==NULL){
-					current=previous=header;
-				}
-				else if(current->next==NULL){
-					printf("\nReached end not possible to move forward!");
-				else{
-					temp=current;
-					current=current->next;
-					temp->next=previous;
-					previous=temp;
-				}
-					
-					
 				
+			case 1: random = (float) (rand() / (float)RAND_MAX);
+				
+					if(random<0.5 && right->next==NULL){
+						printf("\nReached to end no further forward movement possible!");
+						}
+					else if(random<0.5 && right->next!=NULL){
+						printf("\nMovement Direction: Forward");
+						temp=left;
+						left=right;
+						right=right->next;
+						if(left==header)
+							left->next=NULL;
+						else
+							left->next=temp;
+						
+					}
+					else if(random>=0.5 && (left->next==NULL || left==header)){
+						printf("\nReached to end no further bacward movement possible!");
+					}
+					else if(random>=0.5 && left->next!=NULL){
+						printf("\nMovement Direction: Backward");						
+						temp=right;
+						right=left;
+						left=left->next;
+						right->next=temp;
+					}				
+					
+				break;
 			case 2:
-				if(current->next
-			case 3:
-			case 4:
+				printf("\nForward:");
+				displayList(right);
+				printf("Backward:");
+				displayList(left);
+				break;
 			default: break;
+		}
 		
 	}while(choice!=-1);
 				
+	return -1;
 				
 }
-	
-*/
 

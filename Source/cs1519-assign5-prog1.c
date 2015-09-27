@@ -87,7 +87,7 @@ int main(){
 				break;
 
 			case 8: 
-				//backAndForth(header);	
+				ch=moveBackandForth(header);	
 				break;
 					
 			default: break;
