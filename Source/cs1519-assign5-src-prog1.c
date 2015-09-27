@@ -9,13 +9,7 @@ Acknowledgements:
 
 #include<stdio.h>
 #include<stdlib.h>
-
-
-typedef struct node{
-	int element;
-	struct node *next;
-	} Node;
-
+#include"cs1519-assign5-prog1.h"
 
 Node* createNode(int element){
 	Node *temp;
@@ -182,84 +176,48 @@ void displayList(Node *header){
 }
 
 
-int main(){
-	
-	int i,ch, numNode, position;
-	int element;
-	Node *header;
-	header=NULL;
-	
-	printf("\nPlease enter the initial number of nodes in the list: ");
-	scanf("%d", &numNode);
-	
-	for(i=0;i<numNode;i++){
-		printf("\nPlease enter the element for the node%d :", i+1);
-		scanf("%d", &element);
-		if(i==0)
-			header=init(element);
-		else
-			addAtEnd(element, header);
-	}
 
-	
-	
+/*void move(Node *header){
+	Node *current, *previous;
+	Node *temp;
+	int choice;
 	do{
-		printf("\n\n##########################MENU##########################");
-		printf("\n\n1: Add Node at Beginning\n2: Add node at end\n3: Add node at particular position");
-		printf("\n4: Delete Node from Beginning\n5: Delete node from End\n6: Delete node from particular position");
-		printf("\n7: Display the content of the list");		
-		printf("\n\n########################################################"); 
-		printf("\n\nPlease enter your choice(-1 to exit):");
-		scanf("%d", &ch);
-	
-		switch(ch){
+		printf("\n\n1: To move forward\n2: To move backward\n 3: Print forward\n4: Print Backward\n5:Print in Both direction"); 
+		printf("\nPlease enter your choice(-1 to return to main menu):");	
+		scanf("%d", &choice);
+		
+		switch(choice){
+		
 			case 1:
-				printf("\nPlease enter the element for the new node:");
-				scanf("%d", &element);
-				header=addAtBeginning(element, header);
-				break;
+				if(current==header&&header->next!=NULL){
+					current=header->next;
+					previous=header;
+					previous->next=NULL;
+				}
+				else if(header->next==NULL){
+					current=previous=header;
+				}
+				else if(current->next==NULL){
+					printf("\nReached end not possible to move forward!");
+				else{
+					temp=current;
+					current=current->next;
+					temp->next=previous;
+					previous=temp;
+				}
+					
+					
+				
 			case 2:
-				printf("\nPlease enter the element for the new node:");
-				scanf("%d", &element);
-				addAtEnd(element, header);
-				break;
+				if(current->next
 			case 3:
-				printf("\nPlease enter the position for the new node:");
-				scanf("%d", &position);
-				if(position<=0){
-					printf("\nPosition must be greater than 1");
-					printf("\nPlease enter the position again:");
-					scanf("%d", &position);
-				}
-				printf("\nPlease enter the element for the new node:");
-				scanf("%d", &element);
-				addAtPosition(position, element, header);
-				break;
 			case 4:
-				header=deleteFromBeginning(header);
-				break;
-			case 5:
-				header=deleteFromEnd(header);
-				break;
-	
-			case 6:
-				printf("\nPlease enter the position for the deletion");
-				scanf("%d", &position);
-				if(position<=0){
-					printf("\nPosition must be greater than 1");
-					printf("\nPlease enter the position again:");
-					scanf("%d", &position);
-				}
-				header=deleteFromPosition(position, header);
-				break;
-			
-			case 7:
-				displayList(header);
-				break;	
 			default: break;
 		
-		}
-	}while(ch!=-1);
-
-	return 0;
+	}while(choice!=-1);
+				
+				
 }
+	
+*/
+
