@@ -13,24 +13,11 @@ typedef struct node{
 	struct node *next;
 	} Node;
 
-
 Node* createNode(int element);
-
-
 Node* init(int element);
-
-Node* addAtBeginning(int element, Node *header);
-
 void addAtEnd(int element, Node *header);
-
-void addAtPosition(int position, int element, Node *header);
-
-Node* deleteFromBeginning(Node *header);
-
-Node* deleteFromEnd(Node *header);
-
-Node* deleteFromPosition(int position, Node* header);
-
 void displayList(Node *header);
+Node* detectLoop(Node *header);
+void addAtEndLoop(int element, Node *header, int numNodes);
 
-int moveBackandForth(Node *header);
+
