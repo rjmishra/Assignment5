@@ -36,6 +36,7 @@ void fillMatrix(unsigned **matrix, unsigned length){
 			matrix[i][j]=count;
 			count++;
 		}	
+		
 	}
 }
 
