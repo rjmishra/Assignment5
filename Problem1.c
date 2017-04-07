@@ -37,6 +37,7 @@ unsigned ** allocate2D(unsigned length){
 		}
 	}
 	return matrix;
+	
 }
 
 void fillMatrix(unsigned **matrix, unsigned length){
