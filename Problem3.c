@@ -35,6 +35,7 @@ void push(int rowIndex, int colIndex, STACK *stack){
 	stack->next=newElement;
 }
 
+
 STACK pop(STACK *stack){
 	STACK temp, *p;
 	p=stack->next;
