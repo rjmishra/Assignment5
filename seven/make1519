@@ -1,0 +1,13 @@
+all:cs1519-assign7-prog1 cs1519-assign7-prog2
+cs1519-assign7-prog2:cs1519-assign7-prog2.o cs1519-assign7-src-prog2.o
+	gcc cs1519-assign7-prog2.o cs1519-assign7-src-prog2.o -o cs1519-assign7-prog2
+cs1519-assign7-prog2.o:cs1519-assign7-prog2.c cs1519-assign7-prog2.h
+	gcc -c cs1519-assign7-prog2.c -o cs1519-assign7-prog2.o
+cs1519-assign7-src-prog2.o:cs1519-assign7-src-prog2.c cs1519-assign7-prog2.h
+	gcc -c cs1519-assign7-src-prog2.c -o cs1519-assign7-src-prog2.o
+cs1519-assign7-prog1:cs1519-assign7-prog1.o cs1519-assign7-src-prog1.o
+	gcc cs1519-assign7-prog1.o cs1519-assign7-src-prog1.o -o cs1519-assign7-prog1
+cs1519-assign7-prog1.o:cs1519-assign7-prog1.c cs1519-assign7-prog1.h
+	gcc -c cs1519-assign7-prog1.c -o cs1519-assign7-prog1.o
+cs1519-assign7-src-prog1.o:cs1519-assign7-src-prog1.c cs1519-assign7-prog1.h
+	gcc -c cs1519-assign7-src-prog1.c -o cs1519-assign7-src-prog1.o
